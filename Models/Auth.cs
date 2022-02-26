@@ -8,7 +8,7 @@ namespace Models
         // This Attribute, is check if the Login is succesffully.
         public static bool IsLogeed;
 
-        // Method to try effetuate a Login.
+        // Method to try effetuate a Login with Patient.
         public static void PatientLogin(string Mail, string Passwd)
         {
             // Check for a patient in a list of patients, and find
@@ -29,6 +29,7 @@ namespace Models
             }
         }
 
+        // Method to try effetuate a Login with Dentist.
         public static void DentistLogin(string Mail, string Passwd)
         {
             // Check for a patient in a list of patients, and find
