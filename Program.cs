@@ -44,12 +44,12 @@ namespace ConsultorioOdontologico
 
         public static void Main(string[] args)
         {
-            ProcedureController.CreateProcedure("General diagnosis", 300);
             SpecialityController.CreateSpeciality("General Clinic", "General practitioner dentist is usually the first dental professional to be in contact with the patient");
             DentistController.CreateDentist("José do Carmo", "111.111.111-11", "47 99999-9999", "jose.carmo@dentista.com", "123456", "12345/SC", 15000, 1);
             PatientController.CreatePatient("Amélia da Silva", "111.111.111-11", "47 88888-8888", "amelia.silva@paciente.com", "123456", Convert.ToDateTime("1990-01-01"));
             RoomController.CreateRoom("B135", "RaioX");
-            SchedullerController.CreateScheduler(1, 1, 1, 1, Convert.ToDateTime("2022-04-05"));
+            SchedullerController.CreateScheduler(1, 1, 1, Convert.ToDateTime("2022-04-05"));
+            ProcedureController.CreateProcedure("General diagnosis", 300, 1);
             //MenuPrincipal();
 
             do

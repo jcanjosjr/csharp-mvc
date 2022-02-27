@@ -12,14 +12,12 @@ namespace Controllers
             int IdPatient,
             int IdDentist,
             int IdRoom,
-            int IdProcedure,
             DateTime Date
         )
         {
             PatientController.GetPatient(IdPatient);
             DentistController.GetDentist(IdDentist);
             RoomController.GetRoom(IdRoom);
-            ProcedureController.GetProcedure(IdProcedure);
 
             if(Date == null || Date <= DateTime.Now)
             {
@@ -31,7 +29,7 @@ namespace Controllers
                 throw new Exception("Sorry, we already have an Scheduler at this time.");
             }
 
-            return new Scheduler(IdPatient, IdDentist, IdRoom, IdProcedure, Date);
+            return new Scheduler(IdPatient, IdDentist, IdRoom, Date);
         }
 
         // Check if have a Scheduler in the same Time and in the same Room, and with same Dentist

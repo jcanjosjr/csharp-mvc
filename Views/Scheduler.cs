@@ -49,21 +49,11 @@ namespace Views
             {
                 throw new Exception("Invalid ID.");
             }
-            Console.WriteLine("Inform the Date of Scheduler: ");
-            try
-            {
-                Date = Convert.ToDateTime(Console.ReadLine());
-            }
-            catch
-            {
-                throw new Exception("Invalid date.");
-            }
 
             SchedullerController.CreateScheduler(
                 IdPatient,
                 IdDentist,
                 IdRoom,
-                IdProcedure,
                 Date
             );
 

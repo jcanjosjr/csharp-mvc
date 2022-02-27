@@ -9,7 +9,7 @@ namespace Controllers
     public class ProcedureController
     {
         // Create a new Procedure.
-        public static Procedure CreateProcedure(string Description, double Price)
+        public static Procedure CreateProcedure(string Description, double Price, int SchedulerId)
         {
             if(string.IsNullOrEmpty(Description))
             {
@@ -21,8 +21,10 @@ namespace Controllers
             {
                 throw new Exception("Invalid price.");
             }
+            
+            SchedullerController.GetScheduler(SchedulerId);
 
-            return new Procedure(Description, Price);
+            return new Procedure(Description, Price, SchedulerId);
         }
 
         // Alter a existing Procedure.

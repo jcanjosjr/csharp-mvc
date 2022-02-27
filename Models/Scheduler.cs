@@ -15,8 +15,7 @@ namespace Models
         public Dentist Dentist { set; get; }
         public int IdRoom { set; get; }
         public Room Room { get; }
-        public int IdProcedure { set; get; }
-        public Procedure Procedure { get; }
+        public static List<Procedure> Procedures = new List<Procedure>();
         public DateTime Date { set; get; }
         public bool Confirm { set; get; }
 
@@ -25,9 +24,8 @@ namespace Models
             int IdPatient,
             int IdDentist,
             int IdRoom,
-            int IdProcedure,
             DateTime Date
-        ) : this(++SchedulerId, IdPatient, IdDentist, IdRoom, IdProcedure, Date)
+        ) : this(++SchedulerId, IdPatient, IdDentist, IdRoom, Date)
         { }
 
         // The private constructor, will be call when Public where called.
@@ -36,7 +34,6 @@ namespace Models
             int IdPatient,
             int IdDentist,
             int IdRoom,
-            int IdProcedure,
             DateTime Date
         )
         {
@@ -57,11 +54,6 @@ namespace Models
             // this object, and gives to the attribute the Object found.
             this.Room = Room.GetRooms().Find(Room => Room.Id == IdRoom);
 
-            this.IdProcedure = IdProcedure;
-            // Check and find the Patient with the Same Id of the instantiated on 
-            // this object, and gives to the attribute the Object found.
-            this.Procedure = Procedure.GetProcedures().Find(Procedure => Procedure.Id == IdProcedure);
-
             this.Date = Date;
 
             // Add a Scheduler in a List of Schedulers.
@@ -71,14 +63,29 @@ namespace Models
         // The method ToString of Scheduler.
         public override string ToString()
         {
-            return $"ID: {this.Id}"
+            // To calculate the Total Price paid.
+            double totalPrice = 0;
+
+            string printScheduler = $"ID: {this.Id}"
                 + $"\n - Patient: {this.Patient.Name}"
                 + $"\n - Dentist: {this.Dentist.Name}"
                 + $"\n - Room: {this.Room.Number}"
-                + $"\n - Description of Procedure: {this.Procedure.Description}"
-                + $"\n - Price of Procedure: ${this.Procedure.Price}"
                 + $"\n - Date: {this.Date}"
                 + $"\n - Scheduled: {(this.Confirm ? "Confirm scheduler." : "Don't scheduleded.")}";
+
+                // This, walks into a List of Procedures, and return all itens, in String.
+                foreach (Procedure item in Procedures)
+                {
+                    printScheduler += $"Procedure ID: {item.Id}"
+                            + $"\n - Description: {item.Description}."
+                            + $"\n - Price: ${item.Price}";
+                    
+                    totalPrice += item.Price;
+                }
+
+                printScheduler += $"\n^ Total: ${totalPrice}";
+
+                return printScheduler;
         }
 
         // Method to check equality of two Scheduler Objects.
@@ -110,6 +117,12 @@ namespace Models
         public static void RemoveScheduler(Scheduler scheduler)
         {
             Schedulers.Remove(scheduler);
+        }
+
+        // Method to Add Procedure into Scheduler.
+        public static void AddProcedure(Procedure procedure)
+        {
+            Procedures.Add(procedure);
         }
     }
 }

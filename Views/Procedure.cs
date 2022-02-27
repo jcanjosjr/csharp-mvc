@@ -12,8 +12,10 @@ namespace Views
             string Description = Console.ReadLine();
             Console.WriteLine("Inform the Price of Procedure: ");
             double Price = Convert.ToSingle(Console.ReadLine());
+            Console.WriteLine("Inform the Scheduler ID associate with this Procedure: ");
+            int SchedulerId = Convert.ToInt32(Console.ReadLine());
 
-            ProcedureController.CreateProcedure(Description, Price);
+            ProcedureController.CreateProcedure(Description, Price, SchedulerId);
         }
 
         public static void UpdateProcedure()
