@@ -76,7 +76,7 @@ namespace Models
                 // This, walks into a List of Procedures, and return all itens, in String.
                 foreach (Procedure item in Procedures)
                 {
-                    printScheduler += $"Procedure ID: {item.Id}"
+                    printScheduler += $"\nProcedure ID: {item.Id}"
                             + $"\n - Description: {item.Description}."
                             + $"\n - Price: ${item.Price}";
                     
